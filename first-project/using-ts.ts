@@ -18,7 +18,7 @@ function tsadd(num1: number, num2: number) {   //숫자 타입 명시적 선언
 }
 
 tsbutton.addEventListener("click", function() {
-    console.log(tsadd(tsinput1.value, tsinput2.value));
+    console.log(tsadd(+tsinput1.value, +tsinput2.value));   //문자열 타입으로 인식 -> +를 붙여서 숫자로 변환
     //value 속성이 실제로 있는지 확실하지 않다는 에러를 반환
     //자바스크립트에서 고려하지 못했던 오류를 잡아줌
     //대부분의 html 요소들은 value 속성을 갖고있지 않음
@@ -31,3 +31,9 @@ tsbutton.addEventListener("click", function() {
 //오류가 여전히 발생하기도 함
 
 //타입스크립트는 우리가 더 명확히 코드를 다시 확인하도록 요구함
+
+//타입스크립트는 여전히 자바스크립트로 컴파일 하기 때문에 자바스크립트 파일을 가져옴
+//현재 컴파일 과정에서 에러가 발생함
+//Argument of type 'string' is not assignable to parameter of type 'number'
+//문자열 인수를 숫자 타입의 매개변수에 할당할 수 없음을 의미함
+//이는 타입스크립트가 input 요소의 value 속성에서 얻는 것이 문자열이 됨을 이해한다는 것임
