@@ -1,0 +1,27 @@
+var tsbutton = document.querySelector("button");
+var tsinput1 = document.getElementById("num1"); //! 추가 -> 요소를 얻을 것임을 타입스크립트에게 알림
+var tsinput2 = document.getElementById("num2"); //기본적으로 타입스크립트에게 null을 야기하지 않을 것임을 알려줌  -> 항상 요소를 찾을 수 있음
+//여기서는 ID를 통해 값을 받아내고 있지만, 타입스크립트에서
+//해당 코드가 정말 작동하는 지는 알 수 없음
+//예를 들어 id값에 오타가 발생할 경우, 요소를 선택할 수 없음
+//타입스크립트는 html 코드가 작동하는지 확인하기 위해 분석하는 것이 아님
+//따라서 이 코드는 실패할 수도 있음
+//성공하여 요소를 선택할 수 있다고 하더라도 이것이 input 요소가 될 필요는 없음
+//다른 요소가 얼마든지 들어올 수 있기 때문임
+function tsadd(num1, num2) {
+    return num1 + num2;
+    //현재 상태에서 num1의 타입을 확인하면 any로 나옴
+    //이것은 어떤 타입이든 올 수 있다는 의미임
+    //타입스크립트는 더 명확한 타입을 추가할 수 있음
+}
+tsbutton.addEventListener("click", function () {
+    console.log(tsadd(tsinput1.value, tsinput2.value));
+    //value 속성이 실제로 있는지 확실하지 않다는 에러를 반환
+    //자바스크립트에서 고려하지 못했던 오류를 잡아줌
+    //대부분의 html 요소들은 value 속성을 갖고있지 않음
+    //다른 요소가 들어올 가능성이 있기 때문에 value 관련 에러 발생
+});
+//자바스크립트에 있는 코드를 그대로 복사하면 에러가 보임
+//자바스크립트 파일을 삭제하면 오류가 일부 사라지긴하지만, 이름을 바꿔도 괜찮다
+//오류가 여전히 발생하기도 함
+//타입스크립트는 우리가 더 명확히 코드를 다시 확인하도록 요구함
