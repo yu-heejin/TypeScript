@@ -1,21 +1,30 @@
 //console.log('Time to get started...');
 
-function add(n1: number, n2: number) {    //타입배정 사용
+function add(n1: number, n2: number, showResult: boolean, phrase: string) {    //타입배정 사용
     //typeof  //자바스크립트에도 존재하는 연산자, 피연산자의 자료형을 나타내는 문자열을 반환
-    console.log(typeof number1);
-    if(typeof n1 === 'number' && typeof n2 === 'number') {   //js에서 이런식으로 자료형을 검사해서 수행하는 방법도 있음
-        return n1 + n2;
-    }
+    // console.log(typeof number1);
+    // if(typeof n1 === 'number' && typeof n2 === 'number') {   //js에서 이런식으로 자료형을 검사해서 수행하는 방법도 있음
+    //     return n1 + n2;
+    // }
 
-    if(typeof n1 !== 'number' || typeof n2 !== 'number') {
-        throw new Error('Incorrect input!');
-        //불필요한 에러, 타입스크립트는 이러한 불필요한 에러를 발생시키지 않음
-    }
+    // if(typeof n1 !== 'number' || typeof n2 !== 'number') {
+    //     throw new Error('Incorrect input!');
+    //     //불필요한 에러, 타입스크립트는 이러한 불필요한 에러를 발생시키지 않음
+    // }
     //타입 배정 후 두 매개변수 모두 다른 타입의 값을 전달하는 타입이
     //허용되지 않도록 입력해야함
 
     //if문을 이용해 검사하는 방식은 타입스크립트와는 맞지 않음
     //정적 코드인 ts를 사용하면 굳이 이러한 if문을 사용할 필요가 없음
+
+    const result = n1 + n2;
+
+    if(showResult) {   //showResult === true
+        //console.log(phrase + n1 + n2);   //문자열이 결합되기 때문에 아까와 같은 오류 발생
+        console.log(phrase + result);
+    } else {
+        return n1 + n2;
+    }
 }
 
 //단순히 문자열과 숫자를 같이 입력하면, 문자열일 뿐이므로 자바스크립트에서는
@@ -27,10 +36,19 @@ function add(n1: number, n2: number) {    //타입배정 사용
 const number1 = 5;
 //const number1 = '5';    //해당 값을 문자열로 바꾼다면 결과물은 52.8 출력(문자열 연결)
 const number2 = 2.8;
+const printResult = true;
+//const : 상수, let을 사용해도 좋음
+const resultPhrase = 'Result is: ';
 
-const result = add(number1, number2);   //타입 배정 후 발생하는 에러
+//타입스크립트는 정수형이든 실수형이든 모두 number타입
+//js ts 둘 다 마찬가지
+//모든 숫자형은 기본적으로 float 실수형임 -> 5와 5.0 사이에는 차이가 없다
+
+//const result = add(number1, number2, printResult);   //타입 배정 후 발생하는 에러
 //무시하고 컴파일한다고 하더라도 에러때문에 불가능
-console.log(result);
+//console.log(result);
+
+add(number1, number2, printResult, resultPhrase);
 
 //That means. TypeScript's type system only helps you during development
 //(i.e. before the code gets compiled.)
