@@ -1,9 +1,21 @@
 //console.log('Time to get started...');
 
 function add(n1: number, n2: number) {    //타입배정 사용
-    return n1 + n2;
+    //typeof  //자바스크립트에도 존재하는 연산자, 피연산자의 자료형을 나타내는 문자열을 반환
+    console.log(typeof number1);
+    if(typeof n1 === 'number' && typeof n2 === 'number') {   //js에서 이런식으로 자료형을 검사해서 수행하는 방법도 있음
+        return n1 + n2;
+    }
+
+    if(typeof n1 !== 'number' || typeof n2 !== 'number') {
+        throw new Error('Incorrect input!');
+        //불필요한 에러, 타입스크립트는 이러한 불필요한 에러를 발생시키지 않음
+    }
     //타입 배정 후 두 매개변수 모두 다른 타입의 값을 전달하는 타입이
     //허용되지 않도록 입력해야함
+
+    //if문을 이용해 검사하는 방식은 타입스크립트와는 맞지 않음
+    //정적 코드인 ts를 사용하면 굳이 이러한 if문을 사용할 필요가 없음
 }
 
 //단순히 문자열과 숫자를 같이 입력하면, 문자열일 뿐이므로 자바스크립트에서는
@@ -35,3 +47,6 @@ console.log(result);
 
 //js파일과 ts파일이 같이 열려있으면 중복 함수와 관련된 에러가 발생할 수 있기에
 //둘 중 하나만 열어주는 것이 좋다.
+
+
+//js : 동적타입, ts : 정적타입
